@@ -42,19 +42,16 @@
     
         ?>
     </ol>
-    <a href="create.php">create</a>
-    <?php
-    if(isset($_GET['id'])){
-        ?>
-        <a href="update.php?id=<?=$_GET['id']?>">update</a>
-        <div 
-        onclick="if(confirm('정말 삭제하시겠어요?')){location.href='process_delete.php?id=<?=$_GET['id']?>';}"
-        style="cursor: pointer; display: inline-block;"    
-        >delete</div>
-        <?php
-    }
-    ?>
-<h2><?=$article['title']?></h2>
-<?=$article['description']?>
+    <form action="process_create.php" method="post">
+        <p>
+        <p>
+            <input type="text" name="title" placeholder="title">
+        </p>
+        <p>
+            <textarea name="description" placeholder="description"></textarea>
+        </p>
+        <p>
+            <input type="submit">
+        </p>
 </body>
 </html>
