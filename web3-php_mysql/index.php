@@ -15,7 +15,9 @@
     );
 
     if(isset($_GET['id'])){
-        $sql = "SELECT * FROM topic WHERE id = {$_GET['id']}";
+        // SQL Injection 공격 방지 
+        $filtered_id = mysqli_real_escape_string($conn, htmlspecialchars($_GET['id']));
+        $sql = "SELECT * FROM topic WHERE id = {$filtered_id}";
         $result = mysqli_query($conn, $sql);
         $article = mysqli_fetch_assoc($result);
     }

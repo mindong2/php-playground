@@ -15,7 +15,8 @@
     );
 
     if(isset($_GET['id'])){
-        $sql = "SELECT * FROM topic WHERE id = {$_GET['id']}";
+        $filtered_id = mysqli_real_escape_string($conn, $_GET['id']);
+        $sql = "SELECT * FROM topic WHERE id = {$filtered_id}";
         $result = mysqli_query($conn, $sql);
         $article = mysqli_fetch_assoc($result);
     }

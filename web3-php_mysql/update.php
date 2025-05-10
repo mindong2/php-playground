@@ -15,7 +15,8 @@
     );
 
     if(isset($_GET['id'])){
-        $sql = "SELECT * FROM topic WHERE id = {$_GET['id']}";
+        $filtered_id = mysqli_real_escape_string($conn, htmlspecialchars($_GET['id']));
+        $sql = "SELECT * FROM topic WHERE id = {$filtered_id}";
         $result = mysqli_query($conn, $sql);
         $article = mysqli_fetch_assoc($result);
     }
@@ -34,13 +35,12 @@
     <ol>
     <?php
         foreach($rows as $row){
-            ?>
-            
+    ?>
             <li><a href="index.php?id=<?=$row['id']?>"><?=$row['title']?></a></li>
     <?php
         }
     
-        ?>
+    ?>
     </ol>
     <form action="process_update.php" method="post">
         <input type="hidden" name="id" value="<?=$article['id']?>"
